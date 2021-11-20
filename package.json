@@ -3,19 +3,23 @@
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
    "devDependencies": {
-      "ts-node": "3.3.0",
       "@types/node": "^8.0.29",
+      "nodemon": "^2.0.15",
+      "ts-node": "3.3.0",
       "typescript": "3.3.3333"
    },
    "dependencies": {
-      "typeorm": "0.2.40",
-      "reflect-metadata": "^0.1.10",
-      "pg": "^8.4.0",
+      "body-parser": "^1.18.1",
+      "dotenv": "^10.0.0",
       "express": "^4.15.4",
-      "body-parser": "^1.18.1"
+      "morgan": "^1.10.0",
+      "pg": "^8.4.0",
+      "reflect-metadata": "^0.1.10",
+      "typeorm": "0.2.40"
    },
    "scripts": {
       "start": "ts-node src/index.ts",
+      "dev": "nodemon -w *.ts -w .env src/index.ts",
       "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
    }
 }
