@@ -3,24 +3,32 @@ import {createConnection} from "typeorm";
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import {Request, Response} from "express";
+import * as morgan from 'morgan';
 import {Routes} from "./routes";
+import { port } from './config';
+
+function handleError(err, _req, res, _next) {
+  res.status(err.statusCode || 500).send(err.message)
+}
 
 createConnection().then(async connection => {
   const app = express();
+  app.use(morgan('tiny'));
   app.use(bodyParser.json());
 
   Routes.forEach(route => {
-    (app as any)[route.method](route.route, (req: Request, res: Response, next: Function) => {
-      const result = (new (route.controller as any))[route.action](req, res, next);
-      if (result instanceof Promise) {
-        result.then(result => result !== null && result !== undefined ? res.send(result) : undefined);
-      } else if (result !== null && result !== undefined) {
+    (app as any)[route.method](route.route, async (req: Request, res: Response, next: Function) => {
+      try {
+        const result = await (new (route.controller as any))[route.action](req, res, next);
         res.json(result);
+      } catch(err) {
+        next(err);
       }
     });
   });
 
-  app.listen(3000);
+  app.use(handleError);
+  app.listen(port);
 
-  console.log("Express server has started on port 3000. Open http://localhost:3000/users to see results");
+  console.log(`Express server has started on port ${port}.`);
 }).catch(error => console.log(error));
