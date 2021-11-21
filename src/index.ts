@@ -1,34 +1,9 @@
-import "reflect-metadata";
-import {createConnection} from "typeorm";
-import * as express from "express";
-import * as bodyParser from "body-parser";
-import {Request, Response} from "express";
-import * as morgan from 'morgan';
-import {Routes} from "./routes";
-import { port } from './config';
+import { createConnection } from "typeorm";
+import app from "./app"
+import { port } from "./config";
 
-function handleError(err, _req, res, _next) {
-  res.status(err.statusCode || 500).send(err.message)
-}
-
-createConnection().then(async connection => {
-  const app = express();
-  app.use(morgan('tiny'));
-  app.use(bodyParser.json());
-
-  Routes.forEach(route => {
-    (app as any)[route.method](route.route, async (req: Request, res: Response, next: Function) => {
-      try {
-        const result = await (new (route.controller as any))[route.action](req, res, next);
-        res.json(result);
-      } catch(err) {
-        next(err);
-      }
-    });
-  });
-
-  app.use(handleError);
+(async function startApp() {
+  await createConnection();
   app.listen(port);
-
   console.log(`Express server has started on port ${port}.`);
-}).catch(error => console.log(error));
+})();
