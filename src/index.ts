@@ -10,7 +10,6 @@ import { port } from './config';
 import { validationResult } from "express-validator";
 
 function handleError(err, _req, res, _next) {
-  console.log(err)
   res.status(err.statusCode || 500).send(err.message)
 }
 
@@ -27,8 +26,9 @@ createConnection().then(async connection => {
       try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-          throw createError(400, errors.array);
+          return res.status(400).json({ errors: errors.array() });
         }
+
         const result = await (new (route.controller as any))[route.action](req, res, next);
         res.json(result);
       } catch(err) {
