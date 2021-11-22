@@ -1,6 +1,5 @@
 import "reflect-metadata";
-import {CannotCreateEntityIdMapError, createConnection} from "typeorm";
-import * as createError from 'http-errors';
+import { createConnection } from "typeorm";
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import {Request, Response} from "express";
