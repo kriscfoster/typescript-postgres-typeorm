@@ -9,7 +9,7 @@ This is part of a YouTube series where we're building a REST API using TypeScrip
     3. Adding middleware to handle errors.
     4. Setting up app configuration.
     5. Setting up API logging.
-3. [Validating requests](https://youtu.be/QR-oi1PCaZk):
+3. [Validating requests](https://youtu.be/QR-oi1PCaZk).
 
 ## Prerequisites
 
