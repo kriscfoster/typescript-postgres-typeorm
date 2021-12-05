@@ -12,6 +12,7 @@ This is part of a [YouTube series where we're building a REST API using TypeScri
     4. Setting up app configuration.
     5. Setting up API logging.
 3. [Validating requests](https://youtu.be/QR-oi1PCaZk).
+4. [Acceptance/end-to-end Tests](https://youtu.be/Ml51d87uoPo).
 
 ## Prerequisites
 
