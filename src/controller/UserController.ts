@@ -1,4 +1,4 @@
-import {EntityNotFoundError, getRepository} from "typeorm";
+import {getRepository} from "typeorm";
 import {NextFunction, Request, Response} from "express";
 import {User} from "../entity/User";
 
