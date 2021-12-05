@@ -23,7 +23,7 @@ export const Routes = [{
   validation: [
     body('firstName').isString(),
     body('lastName').isString(),
-    body('age').isInt({ min: 0 })
+    body('age').isInt({ min: 0 }).withMessage('age must be a positive integer'),
   ],
 }, {
   method: "delete",
