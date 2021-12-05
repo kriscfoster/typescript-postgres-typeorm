@@ -1,6 +1,6 @@
 # typescript-postgres-typeorm
 
-This is part of a YouTube series where we're building a REST API using TypeScript & Postgres.
+This is part of a [YouTube series where we're building a REST API using TypeScript & Postgres](https://www.youtube.com/playlist?list=PLdk2EmelRVLpIdCFolrwdLhCTHyeefU6W).
 
 ![Text placeholder (26)](https://user-images.githubusercontent.com/17026751/144744647-de7d0691-d109-41dc-ab5d-59d3b412cc0d.png)
 
